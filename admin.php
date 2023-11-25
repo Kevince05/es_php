@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="style/style_admin.css">
     <title>Admin</title>
 </head>
 

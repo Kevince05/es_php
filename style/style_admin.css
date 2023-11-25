@@ -1,0 +1,64 @@
+/* Reset some default styles */
+body,
+h1,
+th,
+td {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Arial", sans-serif;
+	background-color: #f4f4f4;
+	text-align: center;
+}
+
+h1 {
+	color: #333;
+}
+
+table {
+	width: 80%;
+	margin: 20px auto;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	padding: 10px;
+	border: 1px solid #ddd;
+}
+
+th {
+	background-color: #4caf50;
+	color: white;
+}
+
+td {
+	background-color: #fff;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="submit"] {
+	padding: 8px;
+	margin: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+input[type="submit"] {
+	background-color: #4caf50;
+	color: #fff;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	background-color: #45a049;
+}
+
+/* Add some spacing for better readability */
+.margin-bottom {
+	margin-bottom: 16px;
+}

@@ -2,17 +2,20 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="style/style_login.css">
     <title>Login</title>
 </head>
 
 <body>
-    <form action="login.php" method="POST">
-        Username: <input type="text" name="usr"><br>
-        Password: <input type="password" name="pwd"><br>
-        Admin: <input type="checkbox" name="scrt_lvl"><br>
-        <input type="submit" name="submit_type" value="Login">
-        <input type="submit" name="submit_type" value="Register">
-    </form>
+    <div class="container">
+        <form action="login.php" method="POST">
+            Username: <input type="text" name="usr"><br>
+            Password: <input type="password" name="pwd"><br>
+            Admin: <input type="checkbox" name="scrt_lvl"><br>
+            <input type="submit" name="submit_type" value="Login">
+            <input type="submit" name="submit_type" value="Register">
+        </form>
+    </div>
     <?php
     session_start();
 
