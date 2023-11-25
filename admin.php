@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$error = "test";
+$error = null;
 $db = new mysqli("localhost", "root", "", "cesco");
 
 if ($db->connect_error) {
