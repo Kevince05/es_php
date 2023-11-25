@@ -1,20 +1,24 @@
 /* Reset some default styles */
 body,
-h1,
 th,
 td {
 	margin: 0;
 	padding: 0;
 }
 
+h1 {
+	margin: 20px;
+}
+
 body {
 	font-family: "Arial", sans-serif;
-	background-color: #f4f4f4;
+	background-color: #333;
+	color: #fff;
 	text-align: center;
 }
 
 h1 {
-	color: #333;
+	color: #4caf50; /* Accent color for headings */
 }
 
 table {
@@ -26,16 +30,16 @@ table {
 th,
 td {
 	padding: 10px;
-	border: 1px solid #ddd;
+	border: 1px solid #555; /* Darker border color */
 }
 
 th {
-	background-color: #4caf50;
-	color: white;
+	background-color: #222; /* Dark background for header cells */
+	color: #fff;
 }
 
 td {
-	background-color: #fff;
+	background-color: #333; /* Dark background for data cells */
 }
 
 input[type="text"],
@@ -43,9 +47,11 @@ input[type="number"],
 input[type="submit"] {
 	padding: 8px;
 	margin: 5px;
-	border: 1px solid #ccc;
+	border: 1px solid #666; /* Darker border color */
 	border-radius: 4px;
 	box-sizing: border-box;
+	color: #fff; /* Text color */
+	background-color: #444; /* Dark background for input fields */
 }
 
 input[type="submit"] {
@@ -61,4 +67,13 @@ input[type="submit"]:hover {
 /* Add some spacing for better readability */
 .margin-bottom {
 	margin-bottom: 16px;
+}
+
+.error-container {
+	color: #fff;
+	justify-content: center;
+	background-color: #ff3333;
+	padding: 10px;
+	margin: 10px auto;
+	display: none; /* Initially hide the error container */
 }

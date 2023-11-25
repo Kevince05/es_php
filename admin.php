@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+$error = "test";
 $db = new mysqli("localhost", "root", "", "cesco");
 
 if ($db->connect_error) {
@@ -16,13 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $scrt_lvl = $_POST["scrt_lvl"];
     if ($_POST["submit_type"] == "Remove") {
         if (!$db->query("DELETE FROM users WHERE id = '$id'")) {
-            echo '<script>alert("Something went wrong :(")</script>';
-            die("Something went wrong :(");
+            $error = "Delete went wrong :(";
         }
     } else {
         if (!$db->query("UPDATE users SET username='$usr', security_lvl='$scrt_lvl' WHERE id = '$id'")) {
-            echo '<script>alert("Something went wrong :(")</script>';
-            die("Something went wrong :(");
+            $error = "Edit went wrong :(";
         }
     }
 }
@@ -66,7 +64,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                           </form>";
         }
         ?>
-
+        <?php
+        if (isset($error)) {
+            echo '<div class="error-container" style="display: flex;">' . $error . '</div>';
+        }
+        ?>
     </table>
 </body>
 
