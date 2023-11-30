@@ -1,1 +1,4 @@
-TODO: -add order system -add order in db -add order in admin console -work on index
+TODO: 
+-fix status in admin console
+-finilize index
+-decide whether is possible to edit card details

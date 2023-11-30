@@ -1,79 +1,127 @@
 /* Reset some default styles */
-body,
-th,
-td {
-	margin: 0;
-	padding: 0;
+body {
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
-	margin: 20px;
+    margin: 20px;
 }
 
 body {
-	font-family: "Arial", sans-serif;
-	background-color: #333;
-	color: #fff;
-	text-align: center;
+    font-family: "Arial", sans-serif;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
 }
 
 h1 {
-	color: #4caf50; /* Accent color for headings */
+    color: #fff;
+    /* Accent color for headings */
+}
+
+h2,
+h3,
+h4 {
+    color: #45a049;
+    /* Accent color for headings */
 }
 
 table {
-	width: auto;
-	margin: 20px auto;
-	border-collapse: collapse;
+    width: 90%;
+    margin: 20px auto;
+    /* Riduci il margine a sinistra del 5% */
+    border-collapse: collapse;
 }
 
 th,
 td {
-	padding: 10px;
-	border: 1px solid #555; /* Darker border color */
+    padding: 5px;
+    border: 1px solid #555;
+    /* Darker border color */
 }
 
 th {
-	background-color: #222; /* Dark background for header cells */
-	color: #fff;
+    background-color: #222;
+    /* Dark background for header cells */
+    color: #fff;
 }
 
 td {
-	background-color: #333; /* Dark background for data cells */
+    background-color: #333;
+    /* Dark background for data cells */
 }
 
-input[type="text"],
-input[type="number"],
-input[type="submit"] {
-	padding: 8px;
-	margin: 5px;
-	border: 1px solid #666; /* Darker border color */
-	border-radius: 4px;
-	box-sizing: border-box;
-	color: #fff; /* Text color */
-	background-color: #444; /* Dark background for input fields */
+.add_format_input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #666;
+    /* Darker border color */
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #fff;
+    /* Light text color */
+    background-color: #555;
+    /* Dark background for input fields */
+}
+
+.table_format_input {
+    width: 100%;
+    /* Set the width to 100% */
+    padding: 0;
+    /* Remove padding */
+    margin: 0;
+    /* Remove margin */
+    border: 1px solid #666;
+    /* Darker border color */
+    border-radius: 4px;
+    color: #fff;
+    /* Text color */
+    background-color: #444;
+    /* Dark background for input fields */
 }
 
 input[type="submit"] {
-	background-color: #4caf50;
-	color: #fff;
-	cursor: pointer;
+    background-color: #4caf50;
+    border: 1px solid #666;
+    /* Darker border color */
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
 }
 
 input[type="submit"]:hover {
-	background-color: #45a049;
+    background-color: #45a049;
+}
+
+form {
+    background-color: #444;
+    /* Dark background for the form */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    /* Adjust shadow color */
 }
 
 /* Add some spacing for better readability */
 .margin-bottom {
-	margin-bottom: 16px;
+    margin-bottom: 16px;
+}
+
+.container {
+    width: 500px;
+    margin: 10px auto;
+    text-align: left;
+    /* Align text to the left within the container */
 }
 
 .error-container {
-	color: #fff;
-	justify-content: center;
-	background-color: #ff3333;
-	padding: 10px;
-	margin: 10px auto;
-	display: none; /* Initially hide the error container */
+    color: #fff;
+    justify-content: center;
+    background-color: #ff3333;
+    padding: 10px;
+    margin: 10px auto;
+    display: none;
+    /* Initially hide the error container */
 }
