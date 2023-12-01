@@ -19,7 +19,10 @@ body {
 header {
     background-color: #4caf50; /* Header background color */
     color: #fff; /* Header text color */
-    padding: 10px 0;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between; /* Align items on the header horizontally */
+    align-items: center; /* Align items on the header vertically */
 }
 
 nav ul {
@@ -41,26 +44,43 @@ section#main-content {
     margin: 20px;
 }
 
-.product {
-    border: 1px solid #555; /* Border color for product boxes */
+.product_container {
+    width: 90%; /* Set the width of the product box */
+    height: 300px; /* Set the height of the product box */
+    border: 1px solid #555;
     padding: 10px;
     margin: 10px;
-    background-color: #333; /* Background color for product boxes */
+    background-color: #333;
 }
 
-.product img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+.product_img_container {
+    width: 50%;
+    height: 100%;
+    border: 1px solid #555;
+    float: left;
+    background-color: #282828;
 }
 
-footer {
-    background-color: #222; /* Footer background color */
-    color: #fff; /* Footer text color */
-    padding: 10px 0;
-    position: absolute;
-    bottom: 0;
+.product_img{
     width: 100%;
+    height: 100%;
+    object-fit: scale-down;
 }
 
-/* Add more styles as needed */
+.header-buttons {
+    background-color: #3498db; /* Blue background color */
+    color: #fff; /* White text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding for better appearance */
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* Change the color styles as needed */
+.header-buttons:first-child {
+    background-color: #eb6a5b; /* Red background color for the first */
+}
+
+.header-buttons:last-child {
+    background-color: rgb(84, 223, 142); /* Green background color for the second */
+}

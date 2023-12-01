@@ -28,11 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             break;
 
         case 'Remove Product':
-            break;
             $id = $_POST["id"];
             if (!$db->query("DELETE FROM products WHERE id = '$id'")) {
-                $error = "User delete went wrong :(";
+                $error = "Product delete went wrong :(";
             }
+            break;
 
         case 'Edit Product':
             $id = $_POST["id"];
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $error = "Product edit went wrong :(";
             }
             break;
-        case "Add Product":
+        case 'Add Product':
             $id = $db->query("SELECT max(id) FROM products")->fetch_row()[0] + 1;
             $name = $_POST["name"];
             $price = $_POST["price"];
@@ -67,6 +67,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             break;
     }
 }
+
+$usr = $_SESSION["usr"];
+$result = $db->query("SELECT security_lvl FROM users WHERE username = '$usr'");
+if ($result->fetch_assoc()["security_lvl"] < 1) {
+    header("Location:index.php");
+    die("Not an admin");
+} 
 ?>
 
 <!DOCTYPE html>
@@ -78,16 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
-    <?php
-    $usr = $_SESSION["usr"];
-    $result = $db->query("SELECT security_lvl FROM users WHERE username = '$usr'");
-    if ($result->fetch_assoc()["security_lvl"] < 1) {
-        header("Location:index.php");
-        die("Not an admin");
-    } else {
-        echo "<h1>Admin Console</h1>";
-    }
-    ?>
+    <h1>Admin Console</h1>
     <h2>Users</h2>
     <table>
         <tr>
@@ -155,6 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <th>Product</th>
             <th>Quantity</th>
             <th>Delivery Address</th>
+            <th>Status</th>
         </tr>
         <?php
         $result = $db->query("SELECT * FROM orders");
@@ -167,9 +166,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <td>" . $db->query("SELECT username FROM users WHERE id = '$usr_id'")->fetch_row()[0] . "</td>
                                 <td>" . $db->query("SELECT name FROM products WHERE id = '$prod_id'")->fetch_row()[0] . "</td>
                                 <td>" . $row["quantity"] . "</td>
-                                <td><input type='text' value=" . $row["delivery_address"]. " name='del_addr' class='table_format_input'></td>
-                                <td></td>
-                                <td><input type='submit' name='submit_type' value='Edit Order' class='table_format_input'></td>
+                                <td><input type='text' value=" . $row["delivery_address"] . " name='del_addr' class='table_format_input'></td>
+                                <td><input type='text' value=" . $row["status"] . " name='del_addr' class='table_format_input'></td>
+                                <td><select name='status'>
+                                        <option value='paid'>Paid</option>
+                                        <option value='wip'>Work in progress</option>
+                                        <option value='done'>Delivered</option>
+                                    </select></td>
                                 <td><input type='submit' name='submit_type' value='Remove Order' class='table_format_input'></td>
                             </tr>
                           </form>";
