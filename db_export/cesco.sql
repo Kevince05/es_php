@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Nov 30, 2023 alle 21:34
--- Versione del server: 10.4.32-MariaDB
--- Versione PHP: 8.2.12
+-- Creato il: Dic 02, 2023 alle 13:06
+-- Versione del server: 10.4.28-MariaDB
+-- Versione PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,7 +57,7 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `name`, `price`, `thingiverse_link`) VALUES
 (0, 'Benchy', 5.99, 'https://www.thingiverse.com/thing:763622'),
 (1, 'XYZ', 2.99, 'https://www.thingiverse.com/thing:1278865'),
-(2, 'Goat', 7.99, 'https://www.thingiverse.com/thing:3076200');
+(2, 'Drago', 69.00, 'https://www.thingiverse.com/thing:6302870');
 
 -- --------------------------------------------------------
 
@@ -79,8 +79,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `md5_password`, `security_lvl`) VALUES
 (2, 'Kevin', '2e05f63b3f51219d901e9e27da0ddce9', 1),
 (3, 'Fabio', '5b178ab18cb76248c3b9eafe0d9eca8b', 0),
-(4, 'Luca', '19ebcb138359290cd5224ea15f9acb56', 0),
-(5, 'Mimmo', '21207db96785c7eaaa02882fafa95ab4', 0);
+(4, 'Luca', '19ebcb138359290cd5224ea15f9acb56', 0);
 
 --
 -- Indici per le tabelle scaricate
