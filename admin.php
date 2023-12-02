@@ -65,6 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $error = "User delete went wrong :(";
             }
             break;
+        case 'Home':
+            header("Location:index.php");
+            break;
     }
 }
 
@@ -73,7 +76,7 @@ $result = $db->query("SELECT security_lvl FROM users WHERE username = '$usr'");
 if ($result->fetch_assoc()["security_lvl"] < 1) {
     header("Location:index.php");
     die("Not an admin");
-} 
+}
 ?>
 
 <!DOCTYPE html>
@@ -85,67 +88,12 @@ if ($result->fetch_assoc()["security_lvl"] < 1) {
 </head>
 
 <body>
-    <h1>Admin Console</h1>
-    <h2>Users</h2>
-    <table>
-        <tr>
-            <th>Username</th>
-            <th>Security Level</th>
-        </tr>
-        <?php
-        $result = $db->query("SELECT * FROM users");
-        foreach ($result as $row) {
-            echo "<form action='admin.php' method='POST'>
-                            <tr>
-                                <input type='hidden' value=" . $row["id"] . " name='id' class='table_format_input'>
-                                <td><input type='text' value=" . $row["username"] . " name='usr' class='table_format_input'></td>
-                                <td><input type='number' value=" . $row["security_lvl"] . " name='scrt_lvl' min='0' max='1' step='1' class='table_format_input'></td>
-                                <td><input type='submit' name='submit_type' value='Edit User' class='table_format_input'></td>
-                                <td><input type='submit' name='submit_type' value='Remove User' class='table_format_input'></td>
-                            </tr>
-                          </form>";
-        }
-        ?>
-        <?php
-        if (isset($error)) {
-            echo '<div class="error-container" style="display: flex;">' . $error . '</div>';
-        }
-        ?>
-    </table>
-    <h2>Products</h2>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>price</th>
-            <th>Thingiverse Link</th>
-        </tr>
-        <?php
-        $result = $db->query("SELECT * FROM products");
-        foreach ($result as $row) {
-            echo "<form action='admin.php' method='POST'>
-                            <tr>
-                                <input type='hidden' value=" . $row["id"] . " name='id' class='table_format_input'>
-                                <td><input type='text' value=" . $row["name"] . " name='name' class='table_format_input'></td>
-                                <td><input type='number' value=" . $row["price"] . " name='price' min='0' step='0.01' class='table_format_input'></td>
-                                <td><input type='text' value=" . $row["thingiverse_link"] . " name='thg_link' class='table_format_input'></td>
-                                <td><input type='submit' name='submit_type' value='Edit Product' class='table_format_input'></td>
-                                <td><input type='submit' name='submit_type' value='Remove Product' class='table_format_input'></td>
-                            </tr>
-                          </form>";
-        }
-        ?>
-    </table>
-    <h3>Add Procuct</h3>
-    <div class="container">
-        <form action="admin.php" method="POST">
-            Name: <input type="text" name="name" class="add_format_input">
-            Price: <input type="number" name="price" class="add_format_input" min='0' step='0.01'>
-            Thingiverse Link: <input type="text" name="thg_link" class="add_format_input">
-            <div style="text-align: right;">
-                <input type="submit" name="submit_type" value="Add Product">
-            </div>
+    <header>
+        <h1>Admin Console</h1>
+        <form action="admin.php" method="post">
+            <input class="header-buttons" type="submit" name="submit_type" value="Home">
         </form>
-    </div>
+    </header>
     <h2>Order List</h2>
     <table>
         <tr>
@@ -176,6 +124,66 @@ if ($result->fetch_assoc()["security_lvl"] < 1) {
                                 <td><input type='submit' name='submit_type' value='Remove Order' class='table_format_input'></td>
                             </tr>
                           </form>";
+        }
+        ?>
+    </table>
+    <h2>Products</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>price</th>
+            <th>Thingiverse Link</th>
+        </tr>
+        <?php
+        $result = $db->query("SELECT * FROM products");
+        foreach ($result as $row) {
+            echo "<form action='admin.php' method='POST'>
+                            <tr>
+                                <input type='hidden' value=" . $row["id"] . " name='id' class='table_format_input'>
+                                <td><input type='text' value=" . $row["name"] . " name='name' class='table_format_input'></td>
+                                <td><input type='number' value=" . $row["price"] . " name='price' min='0' step='0.01' class='table_format_input'></td>
+                                <td><input type='text' value=" . $row["thingiverse_link"] . " name='thg_link' class='table_format_input'></td>
+                                <td><input type='submit' name='submit_type' value='Edit Product' class='table_format_input'></td>
+                                <td><input type='submit' name='submit_type' value='Remove Product' class='table_format_input'></td>
+                            </tr>
+                          </form>";
+        }
+        ?>
+    </table>
+    <h3>Add Procuct</h3>
+    <div class="container">
+        <form class="input_form" action="admin.php" method="POST">
+            Name: <input type="text" name="name" class="add_format_input">
+            Price: <input type="number" name="price" class="add_format_input" min='0' step='0.01'>
+            Thingiverse Link: <input type="text" name="thg_link" class="add_format_input">
+            <div style="text-align: right;">
+                <input type="submit" name="submit_type" value="Add Product">
+            </div>
+        </form>
+    </div>
+    <h2>Users</h2>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Security Level</th>
+        </tr>
+        <?php
+        $result = $db->query("SELECT * FROM users");
+        foreach ($result as $row) {
+            echo "<form action='admin.php' method='POST'>
+                            <tr>
+                                <input type='hidden' value=" . $row["id"] . " name='id' class='table_format_input'>
+                                <td><input type='text' value=" . $row["username"] . " name='usr' class='table_format_input'></td>
+                                <td><input type='number' value=" . $row["security_lvl"] . " name='scrt_lvl' min='0' max='1' step='1' class='table_format_input'></td>
+                                <td><input type='submit' name='submit_type' value='Edit User' class='table_format_input'></td>
+                                <td><input type='submit' name='submit_type' value='Remove User' class='table_format_input'></td>
+                            </tr>
+                          </form>";
+        }
+        ?>
+        <?php
+        if (isset($error)) {
+            echo '<div class="error-container" style="display: flex;">' . $error . '</div>';
         }
         ?>
     </table>

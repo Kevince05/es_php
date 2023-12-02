@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 
 <head>
-    <link rel="stylesheet" href="style/style_login.css">
+    <link rel="stylesheet" href="../style/style_login.css">
     <title>Login</title>
 </head>
 
