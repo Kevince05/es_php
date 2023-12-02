@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $scrt_lvl = $_POST["scrt_lvl"] ? 1 : 0;
         $id = $db->query("SELECT max(id) FROM users")->fetch_row()[0] + 1;
         $result = $db->query("INSERT INTO users (id, username, md5_password, security_lvl) VALUE ('$id', '$usr', '$pwd', '$scrt_lvl')");
-        if ($result === TRUE) {
+        if ($result) {
             $_SESSION["usr"] = $usr;
             $_SESSION["md5_pwd"] = $pwd;
             header("Location:index.php");
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 
 <head>
-    <link rel="stylesheet" href="../style/style_login.css">
+    <link rel="stylesheet" href="style/style_login.css">
     <title>Login</title>
 </head>
 

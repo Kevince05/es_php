@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 02, 2023 alle 13:06
--- Versione del server: 10.4.28-MariaDB
--- Versione PHP: 8.0.28
+-- Creato il: Dic 02, 2023 alle 21:50
+-- Versione del server: 10.4.32-MariaDB
+-- Versione PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,9 +33,16 @@ CREATE TABLE `orders` (
   `id_product` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `delivery_address` varchar(1024) NOT NULL,
-  `payment_card` varchar(1024) NOT NULL,
+  `payment_request_id` varchar(40) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `orders`
+--
+
+INSERT INTO `orders` (`id`, `id_user`, `id_product`, `quantity`, `delivery_address`, `payment_request_id`, `status`) VALUES
+(1, 2, 0, 1, 'Via Roma 77', 'f3d44585df9bcc1b3ae97a372589392527be8a04', 1);
 
 -- --------------------------------------------------------
 
@@ -56,8 +63,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `price`, `thingiverse_link`) VALUES
 (0, 'Benchy', 5.99, 'https://www.thingiverse.com/thing:763622'),
-(1, 'XYZ', 2.99, 'https://www.thingiverse.com/thing:1278865'),
-(2, 'Drago', 69.00, 'https://www.thingiverse.com/thing:6302870');
+(2, 'Goat', 7.99, 'https://www.thingiverse.com/thing:3076200');
 
 -- --------------------------------------------------------
 
@@ -78,8 +84,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `md5_password`, `security_lvl`) VALUES
 (2, 'Kevin', '2e05f63b3f51219d901e9e27da0ddce9', 1),
-(3, 'Fabio', '5b178ab18cb76248c3b9eafe0d9eca8b', 0),
-(4, 'Luca', '19ebcb138359290cd5224ea15f9acb56', 0);
+(3, 'Fabio', '5b178ab18cb76248c3b9eafe0d9eca8b', 0);
 
 --
 -- Indici per le tabelle scaricate

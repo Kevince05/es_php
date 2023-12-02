@@ -38,13 +38,6 @@ form {
 	box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Adjust shadow color */
 }
 
-/* Style form elements */
-label {
-	display: block;
-	margin-bottom: 8px;
-	color: #ddd; /* Light text color */
-}
-
 input[type="text"],
 input[type="password"] {
 	width: 100%;

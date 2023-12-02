@@ -56,10 +56,10 @@ function parse_description($desc)
     <header>
         <h1>Thingiverse Maker</h1>
         <form action="index.php" method="post">
-            <input class="header-buttons" type="submit" name="submit_type" value="Logout">
+            <input class="header_buttons_logout" type="submit" name="submit_type" value="Logout">
             <?php
             if ($db->query("SELECT security_lvl FROM users WHERE username='$_SESSION[usr]'")->fetch_assoc()["security_lvl"] > 0) {
-                echo "<input class='header-buttons' type='submit' name='submit_type' value='Admin'>";
+                echo "<input class='header_buttons_admin' type='submit' name='submit_type' value='Admin'>";
             }
             ?>
         </form>
@@ -73,24 +73,31 @@ function parse_description($desc)
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $resp = curl_exec($curl);
         $json_data = json_decode($resp, true);
-        file_put_contents("../debug/api_data_" . $row["name"] . ".json", json_encode($json_data));
+        //debug//file_put_contents("../debug/api_data_" . $row["name"] . ".json", json_encode($json_data));
         if ($resp) {
             echo "<div class='product_container'>
-                          <div class='product_img_container'>
-                              <img src= " . $json_data["thumbnail"] . " alt='thumb''>
-                          </div>
-                          <h2>" . $row["name"] . "</h2>
-                          <div class='description_container'>
-                            <p>" . parse_description(substr($json_data["description"], 0, 500)) . "</p>
-                            <a href=" . $row["thingiverse_link"] . ">Learn more</a>
-                          </div>
-                            
-                      </div>";
+                    <div class='product_img_container'>
+                            <img src= " . $json_data["thumbnail"] . " alt='thumb''>
+                    </div>
+                    <h2>" . $row["name"] . "</h2>
+                    <div class='description_container'>
+                        <p>" . parse_description(substr($json_data["description"], 0, 500)) . "</p>
+                        <a href=" . $row["thingiverse_link"] . ">Learn more</a>
+                    </div>                            
+                  </div>
+                  <div class='buy_container'> 
+                    <form action='order.php' method='post'>
+                        " . $row["price"] . "&euro; x 
+                        <input type='hidden' name='thumbnail_link' value=" . $json_data["thumbnail"] . ">
+                        <input type='hidden' name='prod_id' value=" . $row["id"] . ">
+                        <input type='number' name='quantity' min='1' step='1' max='1000' value='1'>
+                        <input class='buy_button' type='submit' name='submit_type' value='Buy'>
+                    </form>
+                  </div>";
         }
     }
     curl_close($curl);
     ?>
-    <form action=""></form>
 </body>
 
 </html>

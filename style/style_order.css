@@ -1,0 +1,149 @@
+/* Reset some default styles */
+body {
+	margin: 0;
+	padding: 0;
+}
+
+h1,
+h2,
+h3 {
+	margin: 20px 0;
+	color: #fff;
+	/* Accent color for headings */
+}
+
+body {
+	font-family: "Arial", sans-serif;
+	background-color: #333;
+	color: #fff;
+	text-align: right;
+	justify-content: center;
+	align-items: center;
+}
+
+header {
+	background-color: #4caf50;
+	/* Header background color */
+	color: #fff;
+	/* Header text color */
+	padding: 10px 10px;
+	display: flex;
+	justify-content: space-between;
+	/* Align items on the header horizontally */
+	align-items: center;
+	/* Align items on the header vertically */
+}
+
+nav ul {
+	list-style-type: none;
+}
+
+nav ul li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+nav a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+}
+
+.product_container {
+	width: auto;
+	height: 100px;
+	border: 0px;
+	padding: 10px;
+	margin: 20px;
+	background-color: #444;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.product_img_container {
+	width: auto;
+	height: 100%;
+	border: 1px solid #555;
+	margin-right: 10px;
+	float: left;
+	background-color: #282828;
+}
+
+.product_img_container img {
+	width: 100%;
+	height: 100%;
+	object-fit: scale-down;
+}
+
+.header_buttons {
+	background-color: #666;
+	color: #fff;
+	/* White text color */
+	border: none;
+	/* Remove border */
+	padding: 10px 20px;
+	/* Add padding for better appearance */
+	cursor: pointer;
+	border-radius: 10px;
+}
+
+.header_buttons:hover {
+	background-color: #424242;
+}
+
+.form_container {
+	height: 250px;
+	display: flex;
+	text-align: right;
+	justify-content: center;
+	align-items: center;
+	background-color: #444;
+	padding: 20px;
+	margin: 10px;
+	border-radius: 5px;
+	position: relative;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+input[type="number"],
+input[type="text"],
+input[type="date"] {
+	width: 60%;
+	flex: 1;
+	background-color: #aaa;
+	color: #000;
+	/* White text color */
+	border: none;
+	/* Remove border */
+	margin: 10px;
+	padding: 10px 20px;
+	border-radius: 10px;
+}
+
+.form_group {
+	display: flex;
+	flex-direction: row;
+}
+
+.buy_button {
+	height: 100%;
+	width: 20%;
+	font-size: 20px;
+	background-color: #54c758;
+	color: #fff;
+	border: none;
+	padding: 5px;
+	cursor: pointer;
+	border-radius: 10px;
+}
+
+.error-container {
+	color: #fff;
+	justify-content: center;
+	background-color: #ff3333;
+	padding: 10px;
+	border-radius: 4px;
+	margin: 10px auto;
+	display: none;
+	/* Initially hide the error container */
+}

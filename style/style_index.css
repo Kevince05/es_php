@@ -46,7 +46,6 @@ nav a {
 	height: 300px; /* Set the height of the product box */
 	border: 1px solid #555;
 	padding: 10px;
-	margin: 10px;
 	background-color: #333;
 }
 
@@ -67,7 +66,7 @@ nav a {
 
 .description_container {
 	width: 100%; /* Adjust as needed */
-	height: 200px;
+	max-height: 200px;
 	margin: 20px auto; /* Center the container */
 	text-align: left;
 }
@@ -76,6 +75,7 @@ nav a {
 	font-size: 16px; /* Adjust as needed */
 	line-height: 1.5; /* Adjust for comfortable line spacing */
 	-webkit-mask-image: linear-gradient(to bottom, #fff, transparent);
+	max-height: 200px;
 }
 
 .description_container a {
@@ -85,8 +85,13 @@ nav a {
 	color: #a3cfa4;
 }
 
-.header-buttons {
-	background-color: #3498db; /* Blue background color */
+.header_buttons {
+	
+}
+
+/* Change the color styles as needed */
+.header_buttons_logout {
+	background-color: #eb6a5b;
 	color: #fff; /* White text color */
 	border: none; /* Remove border */
 	padding: 10px 20px; /* Add padding for better appearance */
@@ -94,15 +99,53 @@ nav a {
 	border-radius: 10px;
 }
 
-/* Change the color styles as needed */
-.header-buttons:first-child {
-	background-color: #eb6a5b; /* Red background color for the first */
+.header_buttons_admin {
+	background-color: #54df8e;
+	color: #fff; /* White text color */
+	border: none; /* Remove border */
+	padding: 10px 20px; /* Add padding for better appearance */
+	cursor: pointer;
+	border-radius: 10px;
 }
 
-.header-buttons:last-child {
-	background-color: rgb(
-		84,
-		223,
-		142
-	); /* Green background color for the second */
+.header_buttons_logout:hover {
+	background-color: #b85247; /* Red background color for the first */
+}
+
+.header_buttons_admin:hover {
+	background-color: #41b471; /* Green background color for the second */
+}
+
+.buy_button {
+	background-color: #54c758;
+	color: #fff; /* White text color */
+	border: none; /* Remove border */
+	padding: 10px 20px; /* Add padding for better appearance */
+	cursor: pointer;
+	border-radius: 10px;
+}
+
+.buy_button:hover{
+	background-color: #48aa4b;
+}
+
+input[type="number"]{
+	background-color: #aaa;
+	color: #000; /* White text color */
+	border: none; /* Remove border */
+	padding: 10px 20px; /* Add padding for better appearance */
+	cursor: pointer;
+	border-radius: 10px;
+}
+
+.buy_container{
+	width: auto; /* Set the width of the product box */
+	height: auto; /* Set the height of the product box */
+	border: 1px solid #555;
+	border-top: 0px;
+	padding: 10px;
+	margin-top: -1px;
+	border-radius: 0px 0px 10px 10px;
+	background-color: #333;
+	float: right;
 }

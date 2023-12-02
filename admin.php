@@ -54,9 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             break;
         case 'Edit Order':
             $id = $_POST["id"];
-            $del_addr = $_POST["del_addr"];
-            if (!$db->query("UPDATE order SET delivery_address='$del_addr' WHERE id = '$id'")) {
-                $error = "Order edit went wrong :(";
+            $status = $_POST["status"];
+            if (!$db->query("UPDATE orders SET status='$status' WHERE id = '$id'")) {
+                $error = "Order Edit went wrong :(";
             }
             break;
         case 'Remove Order':
@@ -91,7 +91,7 @@ if ($result->fetch_assoc()["security_lvl"] < 1) {
     <header>
         <h1>Admin Console</h1>
         <form action="admin.php" method="post">
-            <input class="header-buttons" type="submit" name="submit_type" value="Home">
+            <input type="submit" name="submit_type" value="Home">
         </form>
     </header>
     <h2>Order List</h2>
@@ -109,21 +109,21 @@ if ($result->fetch_assoc()["security_lvl"] < 1) {
             $usr_id = $row["id_user"];
             $prod_id = $row["id_product"];
             echo "<form action='admin.php' method='POST'>
-                            <tr>
-                                <input type='hidden' value=" . $row["id"] . " name='id' class='table_format_input'>
-                                <td>" . $db->query("SELECT username FROM users WHERE id = '$usr_id'")->fetch_row()[0] . "</td>
-                                <td>" . $db->query("SELECT name FROM products WHERE id = '$prod_id'")->fetch_row()[0] . "</td>
-                                <td>" . $row["quantity"] . "</td>
-                                <td><input type='text' value=" . $row["delivery_address"] . " name='del_addr' class='table_format_input'></td>
-                                <td><input type='text' value=" . $row["status"] . " name='del_addr' class='table_format_input'></td>
-                                <td><select name='status'>
-                                        <option value='paid'>Paid</option>
-                                        <option value='wip'>Work in progress</option>
-                                        <option value='done'>Delivered</option>
-                                    </select></td>
-                                <td><input type='submit' name='submit_type' value='Remove Order' class='table_format_input'></td>
-                            </tr>
-                          </form>";
+                    <tr>
+                        <input type='hidden' value=" . $row["id"] . " name='id' class='table_format_input'>
+                        <td>" . $db->query("SELECT username FROM users WHERE id = '$usr_id'")->fetch_row()[0] . "</td>
+                        <td>" . $db->query("SELECT name FROM products WHERE id = '$prod_id'")->fetch_row()[0] . "</td>
+                        <td>" . $row["quantity"] . "</td>
+                        <td>" . $row["delivery_address"] . "</td>
+                        <td><select class='table_format_input' name='status'>
+                                <option value='0'".(($row["status"] == 0)?"selected":"").">Paid</option>
+                                <option value='1'".(($row["status"] == 1)?"selected":"").">Work in progress</option>
+                                <option value='2'".(($row["status"] == 2)?"selected":"").">Delivered</option>
+                            </select></td>
+                        <td><input type='submit' name='submit_type' value='Edit Order' class='table_format_input'></td>
+                        <td><input type='submit' name='submit_type' value='Remove Order' class='table_format_input'></td>
+                    </tr>
+                  </form>";
         }
         ?>
     </table>
