@@ -12,8 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usr = $_POST["usr"];
     $pwd = md5($_POST["pwd"]);
 
-    if ($_POST["submit_type"] === "Login") {
-        $result = $db->query("SELECT username, md5_password FROM users WHERE username='$usr' AND md5_password='$pwd'");
+    if ($_POST["submit_type"] === "Login") {    
+        $prep = $db->prepare("SELECT username, md5_password FROM users WHERE username=? AND md5_password=?");
+        $prep->bind_param("ss",$usr,$pwd);
+        $prep->execute();
+        $result = $prep->get_result();
         if ($result->num_rows == 1) {
             $_SESSION["usr"] = $usr;
             $_SESSION["md5_pwd"] = $pwd;
@@ -24,9 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $scrt_lvl = $_POST["scrt_lvl"] ? 1 : 0;
         $id = $db->query("SELECT max(id) FROM users")->fetch_row()[0] + 1;
-        $result = $db->query("INSERT INTO users (id, username, md5_password, security_lvl) VALUE ('$id', '$usr', '$pwd', '$scrt_lvl')");
-        if ($result) {
-            $_SESSION["usr"] = $usr;
+        $prep = $db->prepare("INSERT INTO users (id, username, md5_password, security_lvl) VALUE ('$id',?,?,?)");
+        $prep->bind_param("ssi",$usr,$pwd,$scrt_lvl);
+        if ($prep->execute()) {
+            $_SESSION["usr"] = $usr;    
             $_SESSION["md5_pwd"] = $pwd;
             header("Location:index.php");
         } else {

@@ -22,7 +22,6 @@ if ($db->connect_error) {
 if (isset($_SESSION["usr"]) && isset($_SESSION["md5_pwd"])) {
     $usr = $_SESSION["usr"];
     $pwd = $_SESSION["md5_pwd"];
-
     $result = $db->query("SELECT username, md5_password FROM users WHERE username='$usr' AND md5_password='$pwd'");
     if ($result->num_rows == 0) {
         header("Location:login.php");
@@ -58,7 +57,9 @@ function parse_description($desc)
         <form action="index.php" method="post">
             <input class="header_buttons_logout" type="submit" name="submit_type" value="Logout">
             <?php
-            if ($db->query("SELECT security_lvl FROM users WHERE username='$_SESSION[usr]'")->fetch_assoc()["security_lvl"] > 0) {
+            $usr = $_SESSION["usr"];
+            $result = $db->query("SELECT security_lvl FROM users WHERE username='$usr'");
+            if ($result->fetch_assoc()["security_lvl"] > 0) {
                 echo "<input class='header_buttons_admin' type='submit' name='submit_type' value='Admin'>";
             }
             ?>
